@@ -12,9 +12,11 @@ import rs.raf.ui2021.javnenabavkebackendfebruar.service.GodisnjiPlanJavnihNabavk
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/godisnji-planovi")
+@CrossOrigin
 public class GodisnjiPlanJavnihNabavkiController {
 
     private GodisnjiPlanJavnihNabavkiService godisnjiPlanJavnihNabavkiService;
@@ -48,6 +50,11 @@ public class GodisnjiPlanJavnihNabavkiController {
     public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody @Valid GodisnjiPlanJavnihNabavkiCreateDto godisnjiPlanJavnihNabavkiCreateDto){
         godisnjiPlanJavnihNabavkiService.updateGodisnjiPlanJavnihNabavki(id, godisnjiPlanJavnihNabavkiCreateDto);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/gp/{id}")
+    public ResponseEntity<List<GodisnjiPlanJavnihNabavkiDto>> gp(@PathVariable("id") Long id){
+        return new ResponseEntity<>(godisnjiPlanJavnihNabavkiService.vrati(id), HttpStatus.OK);
     }
 
 }

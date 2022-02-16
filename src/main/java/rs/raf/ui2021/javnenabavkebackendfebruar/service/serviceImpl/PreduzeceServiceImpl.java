@@ -9,20 +9,25 @@ import org.springframework.stereotype.Service;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.PreduzeceCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.PreduzeceDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.PreduzeceUpdateDto;
+import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
 import rs.raf.ui2021.javnenabavkebackendfebruar.mapper.PreduzeceMapper;
+import rs.raf.ui2021.javnenabavkebackendfebruar.model.Narucilac;
 import rs.raf.ui2021.javnenabavkebackendfebruar.model.Preduzece;
+import rs.raf.ui2021.javnenabavkebackendfebruar.repository.NarucilacRepository;
 import rs.raf.ui2021.javnenabavkebackendfebruar.repository.PreduzeceRepository;
 import rs.raf.ui2021.javnenabavkebackendfebruar.service.PreduzeceService;
 
 @Service
 public class PreduzeceServiceImpl implements PreduzeceService{
-	
+
 	private PreduzeceRepository preduzeceRepo;
 	private PreduzeceMapper preduzeceMapper;
-	
-	public PreduzeceServiceImpl(PreduzeceRepository preduzeceRepo, PreduzeceMapper preduzeceMapper) {
+	private NarucilacRepository narucilacRepository;
+
+	public PreduzeceServiceImpl(PreduzeceRepository preduzeceRepo, PreduzeceMapper preduzeceMapper, NarucilacRepository narucilacRepository) {
 		this.preduzeceRepo = preduzeceRepo;
 		this.preduzeceMapper = preduzeceMapper;
+		this.narucilacRepository = narucilacRepository;
 	}
 
 	@Override
@@ -41,7 +46,23 @@ public class PreduzeceServiceImpl implements PreduzeceService{
 
 	@Override
 	public void remove(Long id) {
-		preduzeceRepo.deleteById(id);	
+		preduzeceRepo.deleteById(id);
+	}
+
+	@Override
+	public PreduzeceDto findByNarucilac(Long id) {
+		PreduzeceDto preduzeceDto;
+		Optional<Narucilac> narucilac = narucilacRepository.findById(id);
+		if(!narucilac.isPresent())
+			throw new NotFoundException("Narucilac sa datim id ne postoji.");
+		Optional<Preduzece> preduzece = preduzeceRepo.findByNarucilac(narucilac.get());
+		if(!preduzece.isPresent())
+			throw new NotFoundException("Ovaj naricilac nema preduzece.");
+		else
+		{
+			preduzeceDto = preduzeceMapper.preduzeceToPreduzeceDto(preduzece.get());
+		}
+		return preduzeceDto;
 	}
 
 	@Override

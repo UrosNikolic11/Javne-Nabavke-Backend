@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/predlozi-nabavke")
+@CrossOrigin
 public class PredlogNabavkeController {
 
     private PredlogNabavkeService predlogNabavkeService;

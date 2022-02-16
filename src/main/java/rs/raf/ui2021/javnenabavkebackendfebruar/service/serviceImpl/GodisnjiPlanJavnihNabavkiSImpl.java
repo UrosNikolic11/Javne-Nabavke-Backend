@@ -9,8 +9,16 @@ import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.GodisnjiPlanJavnihNabavk
 import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
 import rs.raf.ui2021.javnenabavkebackendfebruar.mapper.GodisnjiPlanJavnihNabavkiMapper;
 import rs.raf.ui2021.javnenabavkebackendfebruar.model.GodisnjiPlanJavnihNabavki;
+import rs.raf.ui2021.javnenabavkebackendfebruar.model.Narucilac;
+import rs.raf.ui2021.javnenabavkebackendfebruar.model.Preduzece;
 import rs.raf.ui2021.javnenabavkebackendfebruar.repository.GodisnjiPlanJavnihNabavkiRepository;
+import rs.raf.ui2021.javnenabavkebackendfebruar.repository.NarucilacRepository;
+import rs.raf.ui2021.javnenabavkebackendfebruar.repository.PreduzeceRepository;
 import rs.raf.ui2021.javnenabavkebackendfebruar.service.GodisnjiPlanJavnihNabavkiService;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -18,11 +26,14 @@ public class GodisnjiPlanJavnihNabavkiSImpl implements GodisnjiPlanJavnihNabavki
 
     private GodisnjiPlanJavnihNabavkiRepository godisnjiPlanJavnihNabavkiRepository;
     private GodisnjiPlanJavnihNabavkiMapper godisnjiPlanJavnihNabavkiMapper;
+    private PreduzeceRepository preduzeceRepository;
+    private NarucilacRepository narucilacRepository;
 
-    public GodisnjiPlanJavnihNabavkiSImpl(GodisnjiPlanJavnihNabavkiRepository godisnjiPlanJavnihNabavkiRepository,
-                                          GodisnjiPlanJavnihNabavkiMapper godisnjiPlanJavnihNabavkiMapper) {
+    public GodisnjiPlanJavnihNabavkiSImpl(GodisnjiPlanJavnihNabavkiRepository godisnjiPlanJavnihNabavkiRepository, GodisnjiPlanJavnihNabavkiMapper godisnjiPlanJavnihNabavkiMapper, PreduzeceRepository preduzeceRepository, NarucilacRepository narucilacRepository) {
         this.godisnjiPlanJavnihNabavkiRepository = godisnjiPlanJavnihNabavkiRepository;
         this.godisnjiPlanJavnihNabavkiMapper = godisnjiPlanJavnihNabavkiMapper;
+        this.preduzeceRepository = preduzeceRepository;
+        this.narucilacRepository = narucilacRepository;
     }
 
     @Override
@@ -57,5 +68,23 @@ public class GodisnjiPlanJavnihNabavkiSImpl implements GodisnjiPlanJavnihNabavki
         godisnjiPlanJavnihNabavki.setGodina(godisnjiPlanJavnihNabavkiCreateDto.getGodina());
         godisnjiPlanJavnihNabavki.setObjavljen(godisnjiPlanJavnihNabavkiCreateDto.getObjavljen());
         godisnjiPlanJavnihNabavkiRepository.save(godisnjiPlanJavnihNabavki);
+    }
+
+    @Override
+    public List<GodisnjiPlanJavnihNabavkiDto> vrati(Long narucilacId) {
+        List<GodisnjiPlanJavnihNabavkiDto> lista = new ArrayList<>();
+        Optional<Narucilac> narucilac = narucilacRepository.findById(narucilacId);
+        Optional<Preduzece> preduzece = preduzeceRepository.findByNarucilac(narucilac.get());
+        System.out.println("preduzece" + preduzece.get().getId());
+        System.out.println("narucilac" + narucilac.get().getId());
+        if (!preduzece.isPresent())
+            throw new NotFoundException("Ovaj narucilac nema preduzece.");
+        for(GodisnjiPlanJavnihNabavki gp: godisnjiPlanJavnihNabavkiRepository.findGodisnjiPlanJavnihNabavkisByPreduzece(preduzece.get())){
+
+            System.out.println(gp.getId() + "gp");
+            lista.add(godisnjiPlanJavnihNabavkiMapper.godisnjiPlanToGodisnjiPlanDto(gp));
+        }
+
+        return lista;
     }
 }

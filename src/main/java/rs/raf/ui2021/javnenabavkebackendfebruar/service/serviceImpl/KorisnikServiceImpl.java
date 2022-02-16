@@ -98,6 +98,13 @@ public class KorisnikServiceImpl implements KorisnikService {
                 .map(korisnikMapper :: korisnikToKorisnikDto);
     }
 
+    @Override
+    public KorisnikDto findById(Long id) {
+        Optional<Korisnik> korisnik = korisnikRepository.findById(id);
+        if (!korisnik.isPresent())
+            throw new NotFoundException("Korisnik sa datim id ne postoji");
+        return korisnikMapper.korisnikToKorisnikDto(korisnik.get());
+    }
 
 
 }

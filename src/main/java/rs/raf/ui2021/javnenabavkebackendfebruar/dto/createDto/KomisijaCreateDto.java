@@ -7,8 +7,7 @@ public class KomisijaCreateDto {
     @NotEmpty
     private String glavni;
 
-    public KomisijaCreateDto(@NotEmpty String glavni) {
-        this.glavni = glavni;
+    public KomisijaCreateDto() {
     }
 
     public String getGlavni() {

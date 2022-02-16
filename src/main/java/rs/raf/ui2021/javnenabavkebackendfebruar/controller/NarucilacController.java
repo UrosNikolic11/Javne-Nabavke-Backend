@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.NarucilacCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.NarucilacDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
+import rs.raf.ui2021.javnenabavkebackendfebruar.model.StatusJavneNabavke;
 import rs.raf.ui2021.javnenabavkebackendfebruar.service.NarucilacService;
 
 @RestController
@@ -27,6 +28,10 @@ public class NarucilacController {
 	@GetMapping
 	public ResponseEntity<Page<NarucilacDto>> findAll(Pageable pageable){
 	    return new ResponseEntity<>(narucilacService.findAll(pageable), HttpStatus.OK);
+	}
+	@GetMapping("/{id}")
+	public ResponseEntity<NarucilacDto> getById(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(narucilacService.findById(id), HttpStatus.OK);
 	}
 	
 	@PostMapping

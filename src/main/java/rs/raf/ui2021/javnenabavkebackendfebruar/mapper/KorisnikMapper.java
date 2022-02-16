@@ -25,9 +25,7 @@ public class KorisnikMapper {
         korisnikDto.setPoreskiIdBroj(korisnik.getPoreskiIdBroj());
         korisnikDto.setNstjOznaka(korisnik.getNstjOznaka());
         korisnikDto.setOsobaZaKontakt(korisnik.getOsobaZaKontakt());
-        korisnikDto.setRadnik(korisnik.getRadnik());
-        korisnikDto.setPonudjac(korisnik.getPonudjac());
-        korisnikDto.setNarucilac(korisnik.getNarucilac());
+
 
         return korisnikDto;
 
@@ -49,9 +47,6 @@ public class KorisnikMapper {
         korisnik.setInternetStranica(korisnikCreateDto.getInternetStranica());
         korisnik.setPoreskiIdBroj(korisnikCreateDto.getPoreskiIdBroj());
         korisnik.setNstjOznaka(korisnikCreateDto.getNstjOznaka());
-        korisnik.setRadnik(korisnikCreateDto.getRadnik());
-        korisnik.setPonudjac(korisnikCreateDto.getPonudjac());
-        korisnik.setNarucilac(korisnikCreateDto.getNarucilac());
         korisnik.setOsobaZaKontakt(korisnikCreateDto.getOsobaZaKontakt());
         return korisnik;
 

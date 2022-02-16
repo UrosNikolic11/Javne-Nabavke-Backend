@@ -15,6 +15,8 @@ public interface NarucilacService {
 	
 	//read
 	Page<NarucilacDto> findAll(Pageable pageable);
+
+	NarucilacDto findById(Long id);
 	
 	//update
 	public NarucilacDto update(Long id, NarucilacUpdateDto narucilacUpdateDto);

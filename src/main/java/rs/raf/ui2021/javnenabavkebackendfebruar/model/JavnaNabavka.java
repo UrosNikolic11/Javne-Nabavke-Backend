@@ -1,7 +1,11 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.model;
 
+import rs.raf.ui2021.javnenabavkebackendfebruar.exception.BadRequestException;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -79,32 +83,18 @@ public class JavnaNabavka {
     @JoinColumn(name = "Narucilac_id", referencedColumnName = "id")
     private Narucilac narucilac;
 
-    public JavnaNabavka(Long id, Boolean nijePredvidjenaUPlanu, @NotNull String naziv, @NotNull String interniBroj, @NotNull Double procenjenaVrednost,
-                        Boolean objavaProcenjeneVrednosti, Boolean zahtevZaElekKomunikaciju, @NotNull String kratakOpis, @NotNull Date rokZaPodnosenjePonuda,
-                        @NotNull Integer rokVazenjaPonudeUDanima, @NotNull Date datumOtvaranjaPonuda, @NotNull String opis, @NotNull Boolean jelMala, Komisija komisija,
-                        @NotNull Boolean komisijaOdobrila, StatusJavneNabavke statusJavneNabavke, VrstaPostupka vrstaPostupka, VrstaPredmeta vrstaPredmeta, Narucilac narucilac) {
-        this.id = id;
-        this.nijePredvidjenaUPlanu = nijePredvidjenaUPlanu;
-        this.naziv = naziv;
-        this.interniBroj = interniBroj;
-        this.procenjenaVrednost = procenjenaVrednost;
-        this.objavaProcenjeneVrednosti = objavaProcenjeneVrednosti;
-        this.zahtevZaElekKomunikaciju = zahtevZaElekKomunikaciju;
-        this.kratakOpis = kratakOpis;
-        this.rokZaPodnosenjePonuda = rokZaPodnosenjePonuda;
-        this.rokVazenjaPonudeUDanima = rokVazenjaPonudeUDanima;
-        this.datumOtvaranjaPonuda = datumOtvaranjaPonuda;
-        this.opis = opis;
-        this.jelMala = jelMala;
-        this.komisija = komisija;
-        this.komisijaOdobrila = komisijaOdobrila;
-        this.statusJavneNabavke = statusJavneNabavke;
-        this.vrstaPostupka = vrstaPostupka;
-        this.vrstaPredmeta = vrstaPredmeta;
-        this.narucilac = narucilac;
+    public JavnaNabavka() {
     }
 
-    public JavnaNabavka() {
+    public Date parseDate(String s){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = sdf.parse(s);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        throw new BadRequestException("Pogresan unos datuma '"+s+"'");
     }
 
     public Long getId() {

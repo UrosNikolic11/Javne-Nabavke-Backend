@@ -9,22 +9,19 @@ public class Preduzece { // zapoceto zbog tabele GodisnjiPlanJavnihNabavki koja 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(length = 200)
     private String nazivPreduzeca;
 
-    @OneToMany
-    @JoinColumn(name = "fk_preduzece")
-    private List<GodisnjiPlanJavnihNabavki> godisnjiPlanJavnihNabavkiList = new ArrayList<>();
-    
+
     @OneToOne
     @JoinColumn(name = "fk_narucilacId")
     private Narucilac narucilac;
-    
- 
-	@OneToMany(mappedBy = "preduzece") 
+
+
+    @OneToMany(mappedBy = "preduzece")
     private List<Radnik> radnici = new ArrayList<Radnik>();
-    
+
 
     public Preduzece() {
     }
@@ -37,36 +34,28 @@ public class Preduzece { // zapoceto zbog tabele GodisnjiPlanJavnihNabavki koja 
         this.id = id;
     }
 
-    public List<GodisnjiPlanJavnihNabavki> getGodisnjiPlanJavnihNabavkiList() {
-        return godisnjiPlanJavnihNabavkiList;
+
+    public String getNazivPreduzeca() {
+        return nazivPreduzeca;
     }
 
-    public void setGodisnjiPlanJavnihNabavkiList(List<GodisnjiPlanJavnihNabavki> godisnjiPlanJavnihNabavkiList) {
-        this.godisnjiPlanJavnihNabavkiList = godisnjiPlanJavnihNabavkiList;
+    public void setNazivPreduzeca(String nazivPreduzeca) {
+        this.nazivPreduzeca = nazivPreduzeca;
     }
 
-	public String getNazivPreduzeca() {
-		return nazivPreduzeca;
-	}
+    public Narucilac getNarucilac() {
+        return narucilac;
+    }
 
-	public void setNazivPreduzeca(String nazivPreduzeca) {
-		this.nazivPreduzeca = nazivPreduzeca;
-	}
+    public void setNarucilac(Narucilac narucilac) {
+        this.narucilac = narucilac;
+    }
 
-	public Narucilac getNarucilac() {
-		return narucilac;
-	}
+    public List<Radnik> getRadnici() {
+        return radnici;
+    }
 
-	public void setNarucilac(Narucilac narucilac) {
-		this.narucilac = narucilac;
-	}
-
-	public List<Radnik> getRadnici() {
-		return radnici;
-	}
-
-	public void setRadnici(List<Radnik> radnici) {
-		this.radnici = radnici;
-	}
-    
+    public void setRadnici(List<Radnik> radnici) {
+        this.radnici = radnici;
+    }
 }

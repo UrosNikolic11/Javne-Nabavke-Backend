@@ -40,6 +40,11 @@ public class PreduzeceController {
 		return new ResponseEntity<>( HttpStatus.OK);
 
 	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<PreduzeceDto> fbn(@PathVariable Long id){
+		return new ResponseEntity<>(preduzeceService.findByNarucilac(id), HttpStatus.OK);
+	}
 	
 	
 

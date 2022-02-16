@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/ugovor")
+@CrossOrigin
 public class UgovorController {
 
     private UgovorService ugovorService;

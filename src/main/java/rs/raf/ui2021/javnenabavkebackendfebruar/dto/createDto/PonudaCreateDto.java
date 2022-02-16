@@ -1,6 +1,7 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -11,16 +12,16 @@ public class PonudaCreateDto {
     private String statusPonude;
     @NotBlank(message = "Interni broj je obavezan.")
     private String interniBr;
-    @NotNull(message = "Rok vazenja je obavezan.")
-    private Date rokVazenja;
+    @NotEmpty
+    private String rokVazenja;
     @NotNull(message = "Ukupna cena je obavezna.")
     private Double ukupnaCena;
     @NotNull(message = "Ukupna cena Pdv je obavezna.")
     private Double ukupnaCenaPdv;
     @NotBlank(message = "Valuta je obavezna.")
     private String valuta;
-    @NotNull(message = "Rok placanja je obavezan.")
-    private Date rokPlacanja;
+    @NotEmpty
+    private String rokPlacanja;
     @NotBlank(message = "Nacin placanja je obavezan.")
     private String nacinPlacanja;
     @NotNull(message = "Koriste se pod izvodjaci polje je obavezno.")
@@ -73,13 +74,7 @@ public class PonudaCreateDto {
         this.interniBr = interniBr;
     }
 
-    public Date getRokVazenja() {
-        return rokVazenja;
-    }
 
-    public void setRokVazenja(Date rokVazenja) {
-        this.rokVazenja = rokVazenja;
-    }
 
     public Double getUkupnaCena() {
         return ukupnaCena;
@@ -105,11 +100,19 @@ public class PonudaCreateDto {
         this.valuta = valuta;
     }
 
-    public Date getRokPlacanja() {
+    public String getRokVazenja() {
+        return rokVazenja;
+    }
+
+    public void setRokVazenja(String rokVazenja) {
+        this.rokVazenja = rokVazenja;
+    }
+
+    public String getRokPlacanja() {
         return rokPlacanja;
     }
 
-    public void setRokPlacanja(Date rokPlacanja) {
+    public void setRokPlacanja(String rokPlacanja) {
         this.rokPlacanja = rokPlacanja;
     }
 

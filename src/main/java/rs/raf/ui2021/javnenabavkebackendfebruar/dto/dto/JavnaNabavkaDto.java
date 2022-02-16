@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class JavnaNabavkaDto {
 
+    private Long id;
     private Long narucilac_id;
     private Boolean nijePredvidjenaUPlanu;
     private String naziv;
@@ -26,28 +27,12 @@ public class JavnaNabavkaDto {
     public JavnaNabavkaDto() {
     }
 
-    public JavnaNabavkaDto(Long narucilac_id, Boolean nijePredvidjenaUPlanu, String naziv, String interniBroj, Double procenjenaVrednost,
-                           Boolean objavaProcenjeneVrednosti, Boolean zahtevZaElekKomunikaciju, String kratakOpis, Date rokZaPodnosenjePonuda, Integer rokVazenjaPonudeUDanima,
-                           Date datumOtvaranjaPonuda, String opis, Boolean jelMala, Long komisija_id, Boolean komisijaOborila, Long vrstaPostupka_id,
-                           Long vrstaPredmeta_id, Long statusJavneNabavke_id) {
-        this.narucilac_id = narucilac_id;
-        this.nijePredvidjenaUPlanu = nijePredvidjenaUPlanu;
-        this.naziv = naziv;
-        this.interniBroj = interniBroj;
-        this.procenjenaVrednost = procenjenaVrednost;
-        this.objavaProcenjeneVrednosti = objavaProcenjeneVrednosti;
-        this.zahtevZaElekKomunikaciju = zahtevZaElekKomunikaciju;
-        this.kratakOpis = kratakOpis;
-        this.rokZaPodnosenjePonuda = rokZaPodnosenjePonuda;
-        this.rokVazenjaPonudeUDanima = rokVazenjaPonudeUDanima;
-        this.datumOtvaranjaPonuda = datumOtvaranjaPonuda;
-        this.opis = opis;
-        this.jelMala = jelMala;
-        this.komisija_id = komisija_id;
-        this.komisijaOborila = komisijaOborila;
-        this.vrstaPostupka_id = vrstaPostupka_id;
-        this.vrstaPredmeta_id = vrstaPredmeta_id;
-        this.statusJavneNabavke_id = statusJavneNabavke_id;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getNarucilac_id() {

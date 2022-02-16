@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/statusJavneNabavke")
+@CrossOrigin
 public class StatusJavneNabavkeController {
     private StatusJavneNabavkeService service;
 
@@ -19,6 +20,11 @@ public class StatusJavneNabavkeController {
     @GetMapping
     public ResponseEntity<List<StatusJavneNabavke>> getAllStatusJavneNabavke() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<StatusJavneNabavke> getById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping

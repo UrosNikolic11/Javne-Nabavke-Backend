@@ -10,6 +10,7 @@ import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.KorisnikCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.LoginCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.KorisnikDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.LoginDto;
+import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.LokacijaDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
 import rs.raf.ui2021.javnenabavkebackendfebruar.service.KorisnikService;
 import springfox.documentation.annotations.ApiIgnore;
@@ -30,6 +31,11 @@ public class KorisnikController {
     @GetMapping
     public ResponseEntity<Page<KorisnikDto>> findAll(@ApiIgnore Pageable pageable) {
         return new ResponseEntity<>(korisnikService.findAll(pageable), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<KorisnikDto> getById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(korisnikService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/login")

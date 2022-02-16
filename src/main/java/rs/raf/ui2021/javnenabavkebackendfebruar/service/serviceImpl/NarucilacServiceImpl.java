@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.NarucilacCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.NarucilacDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.NarucilacUpdateDto;
+import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
 import rs.raf.ui2021.javnenabavkebackendfebruar.mapper.NarucilacMapper;
 import rs.raf.ui2021.javnenabavkebackendfebruar.model.Narucilac;
+import rs.raf.ui2021.javnenabavkebackendfebruar.model.StatusJavneNabavke;
 import rs.raf.ui2021.javnenabavkebackendfebruar.repository.NarucilacRepository;
 import rs.raf.ui2021.javnenabavkebackendfebruar.service.NarucilacService;
 
@@ -37,6 +39,14 @@ public class NarucilacServiceImpl implements NarucilacService{
 	public Page<NarucilacDto> findAll(Pageable pageable) {
 		return narucilacRepo.findAll(pageable)
 				.map(narucilacMapper::narucilacToNarucilacDto);	}
+
+	@Override
+	public NarucilacDto findById(Long id) {
+		Optional<Narucilac> narucilac = narucilacRepo.findById(id);
+		if(!narucilac.isPresent())
+			throw new NotFoundException("Narucilac sa datim id ne postoji");
+		return narucilacMapper.narucilacToNarucilacDto(narucilac.get());
+	}
 
 	@Override
 	public void remove(Long id) {

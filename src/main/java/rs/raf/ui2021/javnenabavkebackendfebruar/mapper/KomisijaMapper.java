@@ -12,6 +12,7 @@ public class KomisijaMapper {
     public KomisijaDto komisijaToKomisijaDto(Komisija komisija){
 
         KomisijaDto komisijaDto = new KomisijaDto();
+        komisijaDto.setId(komisija.getId());
         komisijaDto.setGlavni(komisija.getGlavni());
 
         return komisijaDto;

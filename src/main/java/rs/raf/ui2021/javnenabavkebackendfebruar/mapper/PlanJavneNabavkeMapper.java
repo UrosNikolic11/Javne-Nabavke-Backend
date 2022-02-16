@@ -36,7 +36,7 @@ public class PlanJavneNabavkeMapper {
         planJavneNabavkeDto.setGodisnjiPlanJavnihNabavkiId(planJavneNabavke.getGodisnjiPlanJavnihNabavki().getId());
         planJavneNabavkeDto.setPredlogNabavkeId(planJavneNabavke.getPredlogNabavke().getId());
         planJavneNabavkeDto.setNarucilacId(planJavneNabavke.getNarucilac().getId());
-        planJavneNabavkeDto.setObjavaPlanaId(planJavneNabavke.getObjavaPlana().getId());
+//        planJavneNabavkeDto.setObjavaPlanaId(planJavneNabavke.getObjavaPlana().getId());
         return planJavneNabavkeDto;
     }
 
@@ -60,9 +60,9 @@ public class PlanJavneNabavkeMapper {
                 .orElseThrow(() -> new NotFoundException(String
                         .format("Narucilac sa ID-jem '%d' nije pronadjen.", planJavneNabavkeCreateDto.getNarucilacId()))));
 
-        planJavneNabavke.setObjavaPlana(objavaPlanaRepository.findById(planJavneNabavkeCreateDto.getObjavaPlanaId())
-                .orElseThrow(() -> new NotFoundException(String
-                        .format("Objava plana sa ID-jem '%d' nije pronadjena.", planJavneNabavkeCreateDto.getObjavaPlanaId()))));
+//        planJavneNabavke.setObjavaPlana(objavaPlanaRepository.findById(planJavneNabavkeCreateDto.getObjavaPlanaId())
+//                .orElseThrow(() -> new NotFoundException(String
+//                        .format("Objava plana sa ID-jem '%d' nije pronadjena.", planJavneNabavkeCreateDto.getObjavaPlanaId()))));
         return planJavneNabavke;
     }
 }

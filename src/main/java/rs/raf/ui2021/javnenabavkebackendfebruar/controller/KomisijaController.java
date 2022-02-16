@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/komisija")
+@CrossOrigin
 public class KomisijaController {
 
     private KomisijaService komisijaService;

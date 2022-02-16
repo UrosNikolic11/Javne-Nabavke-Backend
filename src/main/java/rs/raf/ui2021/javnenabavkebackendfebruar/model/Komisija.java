@@ -14,10 +14,6 @@ public class Komisija {
 
     public Komisija() {}
 
-    public Komisija(Long id, String glavni) {
-        this.id = id;
-        this.glavni = glavni;
-    }
 
     public Long getId() {
         return id;

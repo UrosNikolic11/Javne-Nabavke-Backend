@@ -11,6 +11,7 @@ public interface KorisnikService {
 
     KorisnikDto createKorisnik(KorisnikCreateDto korisnikCreateDto);
     Page<KorisnikDto> findAll(Pageable pageable);
+    KorisnikDto findById(Long id);
     public KorisnikDto update(Long id, KorisnikCreateDto korisnikCreateDto);
     void delete(Long id);
     LoginDto login(LoginCreateDto loginCreateDto);

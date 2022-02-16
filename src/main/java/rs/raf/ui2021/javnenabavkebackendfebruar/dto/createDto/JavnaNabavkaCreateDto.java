@@ -1,6 +1,7 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class JavnaNabavkaCreateDto {
@@ -9,7 +10,7 @@ public class JavnaNabavkaCreateDto {
     private String naziv;
     @NotEmpty
     private String interniBroj;
-    @NotEmpty
+    @NotNull
     private Double procenjenaVrednost;
 
     private Boolean nijePredvidjenaUPlanu;
@@ -19,52 +20,34 @@ public class JavnaNabavkaCreateDto {
     @NotEmpty
     private String kratakOpis;
     @NotEmpty
-    private Date rokZaPodnosenjePonuda;
-    @NotEmpty
+    private String rokZaPodnosenjePonuda;
+    @NotNull
     private Integer rokVazenjaPonudeUDanima;
     @NotEmpty
-    private Date datumOtvaranjaPonuda;
+    private String datumOtvaranjaPonuda;
     @NotEmpty
     private String opis;
-    @NotEmpty
+    @NotNull
     private Boolean jelMala;
-    @NotEmpty
+    @NotNull
     private Long komisija_id;
-    @NotEmpty
+    @NotNull
     private Boolean komisijaOdobrila;
-    @NotEmpty
+    @NotNull
     private Long statusJavneNabavke_id;
-    @NotEmpty
+    @NotNull
     private Long vrstaPostupka_id;
-    @NotEmpty
+    @NotNull
     private Long vrstaPredmeta_id;
-    @NotEmpty
+    @NotNull
     private Long narucilac_id;
 
-    public JavnaNabavkaCreateDto(@NotEmpty String naziv, @NotEmpty String interniBroj, @NotEmpty Double procenjenaVrednost, Boolean nijePredvidjenaUPlanu,
-                                 Boolean objavaProcenjeneVrednosti, Boolean zahtevZaElekKomunikaciju, @NotEmpty String kratakOpis,
-                                 @NotEmpty Date rokZaPodnosenjePonuda, @NotEmpty Integer rokVazenjaPonudeUDanima, @NotEmpty Date datumOtvaranjaPonuda,
-                                 @NotEmpty String opis, @NotEmpty Boolean jelMala, @NotEmpty Long komisija_id, @NotEmpty Boolean komisijaOdobrila,
-                                 @NotEmpty Long statusJavneNabavke_id, @NotEmpty Long vrstaPostupka_id, @NotEmpty Long vrstaPredmeta_id,
-                                 @NotEmpty Long narucilac_id) {
-        this.naziv = naziv;
-        this.interniBroj = interniBroj;
-        this.procenjenaVrednost = procenjenaVrednost;
-        this.nijePredvidjenaUPlanu = nijePredvidjenaUPlanu;
-        this.objavaProcenjeneVrednosti = objavaProcenjeneVrednosti;
-        this.zahtevZaElekKomunikaciju = zahtevZaElekKomunikaciju;
-        this.kratakOpis = kratakOpis;
-        this.rokZaPodnosenjePonuda = rokZaPodnosenjePonuda;
-        this.rokVazenjaPonudeUDanima = rokVazenjaPonudeUDanima;
-        this.datumOtvaranjaPonuda = datumOtvaranjaPonuda;
-        this.opis = opis;
-        this.jelMala = jelMala;
-        this.komisija_id = komisija_id;
-        this.komisijaOdobrila = komisijaOdobrila;
-        this.statusJavneNabavke_id = statusJavneNabavke_id;
-        this.vrstaPostupka_id = vrstaPostupka_id;
-        this.vrstaPredmeta_id = vrstaPredmeta_id;
-        this.narucilac_id = narucilac_id;
+    public JavnaNabavkaCreateDto() {
+
+    }
+
+    public String getDatumOtvaranjaPonuda() {
+        return datumOtvaranjaPonuda;
     }
 
     public Long getKomisija_id() {
@@ -139,12 +122,16 @@ public class JavnaNabavkaCreateDto {
         this.kratakOpis = kratakOpis;
     }
 
-    public Date getRokZaPodnosenjePonuda() {
+    public String getRokZaPodnosenjePonuda() {
         return rokZaPodnosenjePonuda;
     }
 
-    public void setRokZaPodnosenjePonuda(Date rokZaPodnosenjePonuda) {
+    public void setRokZaPodnosenjePonuda(String rokZaPodnosenjePonuda) {
         this.rokZaPodnosenjePonuda = rokZaPodnosenjePonuda;
+    }
+
+    public void setDatumOtvaranjaPonuda(String datumOtvaranjaPonuda) {
+        this.datumOtvaranjaPonuda = datumOtvaranjaPonuda;
     }
 
     public Integer getRokVazenjaPonudeUDanima() {
@@ -155,13 +142,6 @@ public class JavnaNabavkaCreateDto {
         this.rokVazenjaPonudeUDanima = rokVazenjaPonudeUDanima;
     }
 
-    public Date getDatumOtvaranjaPonuda() {
-        return datumOtvaranjaPonuda;
-    }
-
-    public void setDatumOtvaranjaPonuda(Date datumOtvaranjaPonuda) {
-        this.datumOtvaranjaPonuda = datumOtvaranjaPonuda;
-    }
 
     public String getOpis() {
         return opis;

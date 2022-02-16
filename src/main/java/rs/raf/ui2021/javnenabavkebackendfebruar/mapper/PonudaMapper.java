@@ -43,8 +43,10 @@ public class PonudaMapper {
         ponuda.setStatusPonude(ponudaCreateDto.getStatusPonude());
         ponuda.setNacinPlacanja(ponudaCreateDto.getNacinPlacanja());
         ponuda.setJavnaNabavka(javnaNabavka.get());
-        ponuda.setRokPlacanja(ponudaCreateDto.getRokPlacanja());
-        ponuda.setRokVazenja(ponudaCreateDto.getRokVazenja());
+
+        ponuda.setRokPlacanja(ponuda.parseDate(ponudaCreateDto.getRokPlacanja()));
+        ponuda.setRokVazenja(ponuda.parseDate(ponudaCreateDto.getRokVazenja()));
+
         ponuda.setSamostalnoIliGrupaPonudjaca(ponudaCreateDto.getSamostalnaIliGrupaPonudjaca());
         ponuda.setUkupnaCena(ponudaCreateDto.getUkupnaCena());
         ponuda.setUkupnaCenaPdv(ponudaCreateDto.getUkupnaCenaPdv());
@@ -57,6 +59,7 @@ public class PonudaMapper {
 
     public PonudaDto originalToDto(Ponuda ponuda){
         PonudaDto ponudaDto = new PonudaDto();
+        ponudaDto.setId(ponuda.getId());
         ponudaDto.setInterniBr(ponuda.getInterniBr());
         ponudaDto.setPonudjacId(ponuda.getPonudjac().getId());
         ponudaDto.setStatusPonude(ponuda.getStatusPonude());

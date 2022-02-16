@@ -1,9 +1,12 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.service;
 
 import org.springframework.stereotype.Service;
+import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
 import rs.raf.ui2021.javnenabavkebackendfebruar.model.StatusJavneNabavke;
+import rs.raf.ui2021.javnenabavkebackendfebruar.model.VrstaPredmeta;
 import rs.raf.ui2021.javnenabavkebackendfebruar.repository.StatusJavneNabavkeRepo;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StatusJavneNabavkeService {
@@ -15,6 +18,13 @@ public class StatusJavneNabavkeService {
 
     public List<StatusJavneNabavke> findAll() {
         return repo.findAll();
+    }
+
+    public StatusJavneNabavke findById(Long id){
+        Optional<StatusJavneNabavke> statusJavneNabavke = repo.findById(id);
+        if(!statusJavneNabavke.isPresent())
+            throw new NotFoundException("Status javne nabavke sa datim id ne postoji");
+        return statusJavneNabavke.get();
     }
 
     public StatusJavneNabavke save(StatusJavneNabavke statusJavneNabavke) {
