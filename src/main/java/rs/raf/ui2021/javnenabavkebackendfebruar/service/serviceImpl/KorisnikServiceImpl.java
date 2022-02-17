@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.KorisnikCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.LoginCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.KorisnikDto;
+import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.KorisnikUpdateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.LoginDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
 import rs.raf.ui2021.javnenabavkebackendfebruar.mapper.KorisnikMapper;
@@ -104,6 +105,36 @@ public class KorisnikServiceImpl implements KorisnikService {
         if (!korisnik.isPresent())
             throw new NotFoundException("Korisnik sa datim id ne postoji");
         return korisnikMapper.korisnikToKorisnikDto(korisnik.get());
+    }
+
+    @Override
+    public KorisnikDto updateNarucilac(KorisnikUpdateDto korisnikUpdateDto, Long id) {
+        Optional<Narucilac> narucilac = narucilacRepository.findById(id);
+        if (!narucilac.isPresent())
+            throw new NotFoundException("Narucilac sa datim id ne postoji.");
+        Korisnik korisnik = korisnikRepository.findKorisnikByNarucilac(narucilac.get());
+        korisnik.setEmail(korisnikUpdateDto.getEmail());
+        korisnik.setTelefon(korisnikUpdateDto.getTelefon());
+        korisnik.setIme(korisnikUpdateDto.getIme());
+        korisnik.setPrezime(korisnikUpdateDto.getPrezime());
+        korisnik.setKorisnickoIme(korisnikUpdateDto.getKorisnickoIme());
+        korisnikRepository.save(korisnik);
+        return korisnikMapper.korisnikToKorisnikDto(korisnik);
+    }
+
+    @Override
+    public KorisnikDto updatePonudjac(KorisnikUpdateDto korisnikUpdateDto, Long id) {
+        Optional<Ponudjac> ponudjac = ponudjacRepository.findById(id);
+        if (!ponudjac.isPresent())
+            throw new NotFoundException("Ponudjac sa datim id ne postoji.");
+        Korisnik korisnik = korisnikRepository.findKorisnikByPonudjac(ponudjac.get());
+        korisnik.setEmail(korisnikUpdateDto.getEmail());
+        korisnik.setTelefon(korisnikUpdateDto.getTelefon());
+        korisnik.setIme(korisnikUpdateDto.getIme());
+        korisnik.setPrezime(korisnikUpdateDto.getPrezime());
+        korisnik.setKorisnickoIme(korisnikUpdateDto.getKorisnickoIme());
+        korisnikRepository.save(korisnik);
+        return korisnikMapper.korisnikToKorisnikDto(korisnik);
     }
 
 

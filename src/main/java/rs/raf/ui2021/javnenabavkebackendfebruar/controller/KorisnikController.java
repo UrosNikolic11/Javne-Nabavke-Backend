@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.KorisnikCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.LoginCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.KorisnikDto;
+import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.KorisnikUpdateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.LoginDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.LokacijaDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
@@ -52,6 +53,14 @@ public class KorisnikController {
     public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
         korisnikService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PutMapping("/narucilac/{id}")
+    public ResponseEntity<KorisnikDto> updateN(@PathVariable("id") Long id, @RequestBody @Valid KorisnikUpdateDto korisnikUpdateDto) {
+        return new ResponseEntity<>(korisnikService.updateNarucilac(korisnikUpdateDto,id),HttpStatus.OK);
+    }
+    @PutMapping("/ponudjac/{id}")
+    public ResponseEntity<KorisnikDto> updateP(@PathVariable("id") Long id, @RequestBody @Valid KorisnikUpdateDto korisnikUpdateDto) {
+        return new ResponseEntity<>(korisnikService.updatePonudjac(korisnikUpdateDto,id),HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
