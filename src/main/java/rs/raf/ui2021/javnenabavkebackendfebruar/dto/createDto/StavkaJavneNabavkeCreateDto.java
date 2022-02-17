@@ -1,48 +1,33 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
 
 public class StavkaJavneNabavkeCreateDto {
-    @NotNull(message = "procenjenaVrednost cant be empty")
+
+
     private Float procenjenaVrednost;
 
     private Boolean objavaProcenjeneVrednosti;
 
-    @NotNull(message = "okvirnoVreme cant be empty")
+
     private Integer okvirnoVreme;
 
-    @NotEmpty(message = "kratakOpis cant be empty")
+
     private String kratakOpis;
 
-    @NotEmpty(message = "CPVOznaka cant be empty")
-    private String CPVOznaka;
 
-    @NotEmpty(message = "NSTJIzvsenja cant be empty")
-    private String NSTJIzvsenja;
+    private String cpvOznaka;
+
+
+    private String nstjOznaka;
 
     private String komentar;
 
-    @NotNull(message = "javnaNabavka_id cant be empty")
     private Long javnaNabavka_id;
 
-    @NotNull(message = "planJavneNabavke_id cant be empty")
     private Long planJavneNabavke_id;
 
     public StavkaJavneNabavkeCreateDto() {
-    }
-
-    public StavkaJavneNabavkeCreateDto(Float procenjenaVrednost, Boolean objavaProcenjeneVrednosti, Integer okvirnoVreme, String kratakOpis,
-                                       String CPVOznaka, String NSTJIzvsenja, String komentar, Long javnaNabavka_id, Long planJavneNabavke_id) {
-        this.procenjenaVrednost = procenjenaVrednost;
-        this.objavaProcenjeneVrednosti = objavaProcenjeneVrednosti;
-        this.okvirnoVreme = okvirnoVreme;
-        this.kratakOpis = kratakOpis;
-        this.CPVOznaka = CPVOznaka;
-        this.NSTJIzvsenja = NSTJIzvsenja;
-        this.komentar = komentar;
-        this.javnaNabavka_id = javnaNabavka_id;
-        this.planJavneNabavke_id = planJavneNabavke_id;
     }
 
     public Float getProcenjenaVrednost() {
@@ -77,20 +62,20 @@ public class StavkaJavneNabavkeCreateDto {
         this.kratakOpis = kratakOpis;
     }
 
-    public String getCPVOznaka() {
-        return CPVOznaka;
+    public String getCpvOznaka() {
+        return cpvOznaka;
     }
 
-    public void setCPVOznaka(String CPVOznaka) {
-        this.CPVOznaka = CPVOznaka;
+    public void setCpvOznaka(String cpvOznaka) {
+        this.cpvOznaka = cpvOznaka;
     }
 
-    public String getNSTJIzvsenja() {
-        return NSTJIzvsenja;
+    public String getNstjOznaka() {
+        return nstjOznaka;
     }
 
-    public void setNSTJIzvsenja(String NSTJIzvsenja) {
-        this.NSTJIzvsenja = NSTJIzvsenja;
+    public void setNstjOznaka(String nstjOznaka) {
+        this.nstjOznaka = nstjOznaka;
     }
 
     public String getKomentar() {

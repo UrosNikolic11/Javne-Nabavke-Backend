@@ -49,6 +49,14 @@ public class PonudjacSImpl implements PonudjacService{
 	}
 
 	@Override
+	public PonudjacDto findById(Long id) {
+		Optional<Ponudjac> ponudjac = ponudjacRepository.findById(id);
+		if(!ponudjac.isPresent())
+			throw new NotFoundException("Ponudjac sa datim id ne postoji.");
+		return ponudjacMapper.ponudjacToPonudjacDto(ponudjac.get());
+	}
+
+	@Override
 	public PonudjacDto update(Long id, PonudjacUpdateDto ponudjacUpdateDto) {
 		Optional<Ponudjac> ponudjac = ponudjacRepository.findById(id);
         Ponudjac updPonudjac = ponudjacMapper.updateDtoToOriginal(ponudjacUpdateDto, ponudjac.get());

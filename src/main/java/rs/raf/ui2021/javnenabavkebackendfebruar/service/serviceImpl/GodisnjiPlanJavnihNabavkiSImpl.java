@@ -75,13 +75,12 @@ public class GodisnjiPlanJavnihNabavkiSImpl implements GodisnjiPlanJavnihNabavki
         List<GodisnjiPlanJavnihNabavkiDto> lista = new ArrayList<>();
         Optional<Narucilac> narucilac = narucilacRepository.findById(narucilacId);
         Optional<Preduzece> preduzece = preduzeceRepository.findByNarucilac(narucilac.get());
-        System.out.println("preduzece" + preduzece.get().getId());
-        System.out.println("narucilac" + narucilac.get().getId());
+
         if (!preduzece.isPresent())
             throw new NotFoundException("Ovaj narucilac nema preduzece.");
         for(GodisnjiPlanJavnihNabavki gp: godisnjiPlanJavnihNabavkiRepository.findGodisnjiPlanJavnihNabavkisByPreduzece(preduzece.get())){
 
-            System.out.println(gp.getId() + "gp");
+
             lista.add(godisnjiPlanJavnihNabavkiMapper.godisnjiPlanToGodisnjiPlanDto(gp));
         }
 

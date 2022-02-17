@@ -1,7 +1,11 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.model;
 
+import rs.raf.ui2021.javnenabavkebackendfebruar.exception.BadRequestException;
+
 import javax.persistence.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +48,17 @@ public class PlanJavneNabavke {
     private Narucilac narucilac; 
 
     public PlanJavneNabavke() {
+    }
+
+    public Date parseDate(String s){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = sdf.parse(s);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        throw new BadRequestException("Pogresan unos datuma '"+s+"'");
     }
 
     public Long getId() {

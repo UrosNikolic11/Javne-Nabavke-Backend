@@ -13,6 +13,7 @@ import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.UgovorDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.service.PonudaService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/ponuda")
@@ -38,6 +39,11 @@ public class PonudaController {
     @PostMapping("/create")
     public ResponseEntity<PonudaDto> napraviUgovor(@RequestBody @Valid PonudaCreateDto ponudaCreateDto) {
         return new ResponseEntity<>(ponudaService.create(ponudaCreateDto), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/narucilac/{id}")
+    public ResponseEntity<List<PonudaDto>> nadjiPonudePoNaruciocu(@PathVariable("id") Long id){
+        return new ResponseEntity<>(ponudaService.findByNarucilac(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

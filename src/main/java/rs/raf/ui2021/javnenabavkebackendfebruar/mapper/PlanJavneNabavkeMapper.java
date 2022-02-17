@@ -45,8 +45,8 @@ public class PlanJavneNabavkeMapper {
         planJavneNabavke.setGodinaPlana(planJavneNabavkeCreateDto.getGodinaPlana());
         planJavneNabavke.setStatusPlana(planJavneNabavkeCreateDto.getStatusPlana());
         planJavneNabavke.setVerzijaPlana(planJavneNabavkeCreateDto.getVerzijaPlana());
-        planJavneNabavke.setDatumUsvajanja(planJavneNabavkeCreateDto.getDatumUsvajanja());
-        planJavneNabavke.setDatumSlanjaNaObjavu(planJavneNabavkeCreateDto.getDatumSlanjaNaObjavu());
+        planJavneNabavke.setDatumUsvajanja(planJavneNabavke.parseDate(planJavneNabavkeCreateDto.getDatumUsvajanja()));
+        planJavneNabavke.setDatumSlanjaNaObjavu(planJavneNabavke.parseDate(planJavneNabavkeCreateDto.getDatumSlanjaNaObjavu()));
 
         planJavneNabavke.setGodisnjiPlanJavnihNabavki(godisnjiPlanJavnihNabavkiRepository.findById(planJavneNabavkeCreateDto.getGodisnjiPlanJavnihNabavkiId())
                 .orElseThrow(() -> new NotFoundException(String

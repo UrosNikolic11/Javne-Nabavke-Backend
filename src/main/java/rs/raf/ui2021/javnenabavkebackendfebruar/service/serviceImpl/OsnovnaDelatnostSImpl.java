@@ -28,10 +28,10 @@ public class OsnovnaDelatnostSImpl implements OsnovnaDelatnostService {
 
 	@Override
 	public OsnovnaDelatnostDto create(OsnovnaDelatnostCreateDto osnovnaDelatnostCreateDto) {
-		System.out.println("Usao");
+
 		OsnovnaDelatnost osnovnaDelatnost = osnovnaDelatnostMapper.osnovnaDelatnostCreateDtoToOD(osnovnaDelatnostCreateDto);
 		osnovnaDelatnostRepository.save(osnovnaDelatnost);
-		System.out.println(osnovnaDelatnost);
+
 		return osnovnaDelatnostMapper.osnovnaDelatnostToODD(osnovnaDelatnost);
 	}
 

@@ -18,11 +18,11 @@ public class PlanJavneNabavkeCreateDto {
     @NotNull(message = "Verzija plana je obavezna.")
     private Integer verzijaPlana;
 
-    @NotNull(message = "Datum usvajanja je obavezan.")
-    private Date datumUsvajanja;
+    @NotEmpty(message = "Datum usvajanja je obavezan.")
+    private String datumUsvajanja;
 
-    @NotNull(message = "Datum slanja na objavu je obavezan.")
-    private Date datumSlanjaNaObjavu;
+    @NotEmpty(message = "Datum slanja na objavu je obavezan.")
+    private String datumSlanjaNaObjavu;
 
     @NotNull(message = "ID godisnjeg plana javnih nabavki je obavezan.")
     private Long godisnjiPlanJavnihNabavkiId;
@@ -36,19 +36,6 @@ public class PlanJavneNabavkeCreateDto {
     private Long objavaPlanaId;
 
     public PlanJavneNabavkeCreateDto() {
-    }
-
-    public PlanJavneNabavkeCreateDto(Integer godinaPlana, String statusPlana, Integer verzijaPlana, Date datumUsvajanja, Date datumSlanjaNaObjavu,
-                                     Long godisnjiPlanJavnihNabavkiId, Long predlogNabavkeId, Long narucilacId, Long objavaPlanaId) {
-        this.godinaPlana = godinaPlana;
-        this.statusPlana = statusPlana;
-        this.verzijaPlana = verzijaPlana;
-        this.datumUsvajanja = datumUsvajanja;
-        this.datumSlanjaNaObjavu = datumSlanjaNaObjavu;
-        this.godisnjiPlanJavnihNabavkiId = godisnjiPlanJavnihNabavkiId;
-        this.predlogNabavkeId = predlogNabavkeId;
-        this.narucilacId = narucilacId;
-        this.objavaPlanaId = objavaPlanaId;
     }
 
     public Integer getGodinaPlana() {
@@ -75,19 +62,19 @@ public class PlanJavneNabavkeCreateDto {
         this.verzijaPlana = verzijaPlana;
     }
 
-    public Date getDatumUsvajanja() {
+    public String getDatumUsvajanja() {
         return datumUsvajanja;
     }
 
-    public void setDatumUsvajanja(Date datumUsvajanja) {
+    public void setDatumUsvajanja(String datumUsvajanja) {
         this.datumUsvajanja = datumUsvajanja;
     }
 
-    public Date getDatumSlanjaNaObjavu() {
+    public String getDatumSlanjaNaObjavu() {
         return datumSlanjaNaObjavu;
     }
 
-    public void setDatumSlanjaNaObjavu(Date datumSlanjaNaObjavu) {
+    public void setDatumSlanjaNaObjavu(String datumSlanjaNaObjavu) {
         this.datumSlanjaNaObjavu = datumSlanjaNaObjavu;
     }
 

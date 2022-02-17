@@ -6,11 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.JavnaNabavkaCreateDto;
+import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.GodisnjiPlanJavnihNabavkiDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.JavnaNabavkaDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.JavnaNabavkaUpdateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.service.JavnaNabavkaService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/javna-nabavka")
@@ -48,5 +50,9 @@ public class JavnaNabavkaController {
             , @RequestBody @Valid JavnaNabavkaUpdateDto javnaNabavkaUpdateDto) {
 
         return new ResponseEntity<>(javnaNabavkaService.update(id, javnaNabavkaUpdateDto), HttpStatus.OK);
+    }
+    @GetMapping("/jn/{id}")
+    public ResponseEntity<List<JavnaNabavkaDto>> jn(@PathVariable("id") Long id){
+        return new ResponseEntity<>(javnaNabavkaService.vrati(id), HttpStatus.OK);
     }
 }

@@ -3,7 +3,6 @@ package rs.raf.ui2021.javnenabavkebackendfebruar.service.serviceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.StavkaJavneNabavkeCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.StavkaJavneNabavkeDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
@@ -31,7 +30,8 @@ public class StavkaJavneNabavkeSImpl implements StavkaJavneNabavkeService {
     }
 
     @Override
-    public StavkaJavneNabavkeDto add(StavkaJavneNabavkeCreateDto stavkaJavneNabavkeCreateDto) throws javassist.NotFoundException {
+    public StavkaJavneNabavkeDto add(StavkaJavneNabavkeCreateDto stavkaJavneNabavkeCreateDto)  {
+
         StavkaJavneNabavke stavkaJavneNabavke = stavkaJavneNabavkeMapper.stavkaJNCreateDtoToStavkaJN(stavkaJavneNabavkeCreateDto);
         stavkaJavneNabavkeRepository.save(stavkaJavneNabavke);
         return stavkaJavneNabavkeMapper.stavkaJNToStavkaJNDto(stavkaJavneNabavke);
@@ -55,8 +55,8 @@ public class StavkaJavneNabavkeSImpl implements StavkaJavneNabavkeService {
                 .orElseThrow(() -> new NotFoundException(String.format("Stavka javne nabavke sa id: %d nije pronadjena.", id)));
         stavkaJavneNabavke.setKomentar(stavkaJavneNabavkeCreateDto.getKomentar());
         stavkaJavneNabavke.setKratakOpis(stavkaJavneNabavkeCreateDto.getKratakOpis());
-        stavkaJavneNabavke.setCPVOznaka(stavkaJavneNabavkeCreateDto.getCPVOznaka());
-        stavkaJavneNabavke.setNSTJIzvsenja(stavkaJavneNabavkeCreateDto.getNSTJIzvsenja());
+        stavkaJavneNabavke.setCpvOznaka(stavkaJavneNabavkeCreateDto.getCpvOznaka());
+        stavkaJavneNabavke.setNstjOznaka(stavkaJavneNabavkeCreateDto.getNstjOznaka());
         stavkaJavneNabavke.setProcenjenaVrednost(stavkaJavneNabavkeCreateDto.getProcenjenaVrednost());
         stavkaJavneNabavke.setObjavaProcenjeneVrednosti(stavkaJavneNabavkeCreateDto.getObjavaProcenjeneVrednosti());
         stavkaJavneNabavke.setOkvirnoVreme(stavkaJavneNabavkeCreateDto.getOkvirnoVreme());

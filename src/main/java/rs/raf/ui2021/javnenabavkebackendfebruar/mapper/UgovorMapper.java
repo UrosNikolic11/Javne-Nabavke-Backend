@@ -5,10 +5,7 @@ import rs.raf.ui2021.javnenabavkebackendfebruar.dto.createDto.UgovorCreateDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.dto.dto.UgovorDto;
 import rs.raf.ui2021.javnenabavkebackendfebruar.exception.NotFoundException;
 import rs.raf.ui2021.javnenabavkebackendfebruar.model.*;
-import rs.raf.ui2021.javnenabavkebackendfebruar.repository.JavnaNabavkaRepository;
-import rs.raf.ui2021.javnenabavkebackendfebruar.repository.NarucilacRepository;
-import rs.raf.ui2021.javnenabavkebackendfebruar.repository.OkvirniSporazumRepository;
-import rs.raf.ui2021.javnenabavkebackendfebruar.repository.PonudjacRepository;
+import rs.raf.ui2021.javnenabavkebackendfebruar.repository.*;
 
 import java.util.Optional;
 
@@ -19,12 +16,15 @@ public class UgovorMapper {
     private NarucilacRepository narucilacRepository;
     private PonudjacRepository ponudjacRepository;
     private OkvirniSporazumRepository okvirniSporazumRepository;
+    private PonudaRepository ponudaRepository;
 
-    public UgovorMapper(JavnaNabavkaRepository javnaNabavkaRepository, NarucilacRepository narucilacRepository, PonudjacRepository ponudjacRepository, OkvirniSporazumRepository okvirniSporazumRepository) {
+    public UgovorMapper(JavnaNabavkaRepository javnaNabavkaRepository, NarucilacRepository narucilacRepository, PonudjacRepository ponudjacRepository,
+                        OkvirniSporazumRepository okvirniSporazumRepository, PonudaRepository ponudaRepository) {
         this.javnaNabavkaRepository = javnaNabavkaRepository;
         this.narucilacRepository = narucilacRepository;
         this.ponudjacRepository = ponudjacRepository;
         this.okvirniSporazumRepository = okvirniSporazumRepository;
+        this.ponudaRepository = ponudaRepository;
     }
 
     public Ugovor createDtoToOriginal(UgovorCreateDto ugovorCreateDto){
@@ -55,6 +55,9 @@ public class UgovorMapper {
         ugovor.setJavnaNabavka(javnaNabavka.get());
         ugovor.setNarucilac(narucilac.get());
         ugovor.setPonudjac(ponudjac.get());
+
+        Optional<Ponuda> ponuda = ponudaRepository.findPonudaByJavnaNabavka(javnaNabavka.get());
+        ponudaRepository.delete(ponuda.get());
         return ugovor;
     }
 
@@ -64,7 +67,10 @@ public class UgovorMapper {
         ugovorDto.setJavnaNabavkaId(ugovor.getJavnaNabavka().getId());
         ugovorDto.setNarucilacId(ugovor.getNarucilac().getId());
         ugovorDto.setPonudjacId(ugovor.getPonudjac().getId());
-        ugovorDto.setOkvirniSporazumId(ugovor.getOkvirniSporazum().getId());
+        if(ugovor.getOkvirniSporazum() != null)
+            ugovorDto.setOkvirniSporazumId(ugovor.getOkvirniSporazum().getId());
+        else
+            ugovorDto.setOkvirniSporazumId(null);
 
         return ugovorDto;
     }

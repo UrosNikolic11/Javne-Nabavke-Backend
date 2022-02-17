@@ -1,6 +1,5 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.controller;
 
-import javassist.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/stavke-nabavke")
+@CrossOrigin
 public class StavkaJavneNabavkeController {
 
     private StavkaJavneNabavkeService stavkaJavneNabavkeService;
@@ -29,7 +29,7 @@ public class StavkaJavneNabavkeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<StavkaJavneNabavkeDto> add(@RequestBody @Valid StavkaJavneNabavkeCreateDto stavkaJavneNabavkeCreateDto) throws NotFoundException {
+    public ResponseEntity<StavkaJavneNabavkeDto> add(@RequestBody  StavkaJavneNabavkeCreateDto stavkaJavneNabavkeCreateDto)  {
         return new ResponseEntity<>(stavkaJavneNabavkeService.add(stavkaJavneNabavkeCreateDto), HttpStatus.CREATED);
     }
 

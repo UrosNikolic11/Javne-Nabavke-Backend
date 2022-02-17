@@ -4,9 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import rs.raf.ui2021.javnenabavkebackendfebruar.model.JavnaNabavka;
 import rs.raf.ui2021.javnenabavkebackendfebruar.model.Komisija;
+import rs.raf.ui2021.javnenabavkebackendfebruar.model.Narucilac;
+
+import java.util.List;
 
 @Repository
 public interface JavnaNabavkaRepository extends JpaRepository<JavnaNabavka, Long> {
 
     JavnaNabavka findJavnaNabavkaById(Long id);
+    List<JavnaNabavka> findJavnaNabavkasByNarucilac(Narucilac narucilac);
 }

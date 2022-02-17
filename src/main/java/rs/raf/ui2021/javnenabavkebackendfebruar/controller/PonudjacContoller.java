@@ -38,6 +38,11 @@ public class PonudjacContoller {
     public ResponseEntity<Page<PonudjacDto>> getAll(Pageable pageable) {
         return new ResponseEntity<>(ponudjacService.findAll(pageable), HttpStatus.OK);
     }
+
+	@GetMapping("/{id}")
+	public ResponseEntity<PonudjacDto> getById(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(ponudjacService.findById(id), HttpStatus.OK);
+	}
 	
 	@ApiOperation(value = "Delete")
 	@DeleteMapping("/{id}")

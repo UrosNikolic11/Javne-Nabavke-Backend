@@ -1,6 +1,8 @@
 package rs.raf.ui2021.javnenabavkebackendfebruar.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class StavkaJavneNabavke {
@@ -16,23 +18,23 @@ public class StavkaJavneNabavke {
     @Column(nullable = false)
     private Integer okvirnoVreme;
 
-    @Column(length = 200, nullable = false)
+    @Column(nullable = false)
     private String kratakOpis;
 
-    @Column(length = 200, nullable = false)
-    private String CPVOznaka;
+    @Column
+    private String cpvOznaka;
 
-    @Column(length = 200, nullable = false)
-    private String NSTJIzvsenja;
+    @Column
+    private String nstjOznaka;
 
     private String komentar;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "JavnaNabavka_id")//todo referencedColumnName = "id" mozda ovo da se doda
+    @JoinColumn(name = "JavnaNabavka_id", referencedColumnName = "id")//todo referencedColumnName = "id" mozda ovo da se doda
     private JavnaNabavka javnaNabavka;
 
     @OneToOne
-    @JoinColumn(name = "planJavneNabavke_id")
+    @JoinColumn(name = "planJavneNabavke_id", referencedColumnName = "id")
     private PlanJavneNabavke planJavneNabavke;
 
     public StavkaJavneNabavke() {
@@ -78,20 +80,20 @@ public class StavkaJavneNabavke {
         this.kratakOpis = kratakOpis;
     }
 
-    public String getCPVOznaka() {
-        return CPVOznaka;
+    public String getCpvOznaka() {
+        return cpvOznaka;
     }
 
-    public void setCPVOznaka(String CPVOznaka) {
-        this.CPVOznaka = CPVOznaka;
+    public void setCpvOznaka(String cpvOznaka) {
+        this.cpvOznaka = cpvOznaka;
     }
 
-    public String getNSTJIzvsenja() {
-        return NSTJIzvsenja;
+    public String getNstjOznaka() {
+        return nstjOznaka;
     }
 
-    public void setNSTJIzvsenja(String NSTJIzvsenja) {
-        this.NSTJIzvsenja = NSTJIzvsenja;
+    public void setNstjOznaka(String nstjOznaka) {
+        this.nstjOznaka = nstjOznaka;
     }
 
     public String getKomentar() {
